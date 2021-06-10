@@ -1,0 +1,62 @@
+#!/bin/bash
+
+#create a virtual environment 
+python3 -m venv env
+echo "creating virtual environment" 
+#activate env 
+source env/bin/activate
+echo "virtual environment activated"
+
+#install django 
+python -m pip install Django
+echo "Django installed" 
+
+#get project name
+read -p "Enter project name: " project
+
+#start project 
+django-admin startproject $project
+echo "project created"
+cd $project
+
+# create app 
+read -p "Enter app name: " app
+python manage.py startapp $app
+echo "app created"
+
+# create a urls files
+cd $app
+touch urls.py
+echo -e "from django.urls import path\n" >> urls.py 
+echo -e "from . import views\n" >> urls.py
+echo "" >> urls.py
+echo "urlpatterns = []" >> urls.py
+cd ../
+
+# creating templates and static directories 
+mkdir static
+mkdir templates
+echo "static and templates directories created"
+
+cd static
+mkdir images
+mkdir css
+mkdir js
+
+echo "...Done!"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
